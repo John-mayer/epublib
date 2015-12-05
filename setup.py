@@ -18,7 +18,7 @@ setup(
     url='https://github.com/takuan-osho/epublib',
     author='SHIMIZU Taku',
     author_email='shimizu.taku@gmail.com',
-    license='BSD',
+    license='MIT',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

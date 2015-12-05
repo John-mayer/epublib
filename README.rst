@@ -26,6 +26,8 @@ install::
 LICENSE
 -------
 
+MIT
+
 AUTHOR
 ------
 
