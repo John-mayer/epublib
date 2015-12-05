@@ -3,6 +3,7 @@ import unittest
 
 from epublib import epub
 
+
 class TestBook(unittest.TestCase):
 
     def setUp(self):
