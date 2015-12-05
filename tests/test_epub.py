@@ -8,9 +8,7 @@ class TestBook(unittest.TestCase):
     def setUp(self):
         self.book = epub.Book()
 
-    def test_title(self):
-        # default epub book title is empty string.
-        self.assertEqual(self.book.title, '')
+    def test_mimetype(self):
+        # the content of mimetype in epub3 file is unchangeable.
+        self.assertEqual(self.book.mimetype, 'application/epub+zip')
 
-        self.book.title = 'sample-book'
-        self.assertEqual(self.book.title, 'sample-book')
