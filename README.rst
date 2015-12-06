@@ -6,6 +6,11 @@ Overview
 
 Library for writing and reading epub.
 
+Caution
++++++++
+
+This library doesn't work yet.
+
 Description
 -----------
 
