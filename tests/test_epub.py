@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
 import unittest
+import tempfile
+import shutil
 
 from epublib import epub
 
@@ -13,3 +16,19 @@ class TestBook(unittest.TestCase):
         # the content of mimetype in epub3 file is unchangeable.
         self.assertEqual(self.book.mimetype, 'application/epub+zip')
 
+
+class TestWriter(unittest.TestCase):
+
+    def setUp(self):
+        self.writer = epub.Writer()
+        self.tempdir = tempfile.mkdtemp(dir=os.getcwd())
+
+    def tearDown(self):
+        shutil.rmtree(self.tempdir)
+
+    def test_make_mimetype(self):
+        filepath = os.path.join(self.tempdir, 'mimetype')
+        self.writer.make_mimetype(epub.Book(), self.tempdir)
+
+        with open(filepath, 'r') as mimetype:
+            self.assertEqual(mimetype.read(), 'application/epub+zip')

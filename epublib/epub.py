@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import os
+
 
 class Book(object):
     def __init__(self, title='', lang='en', author='', publisher='',
@@ -24,3 +26,12 @@ class Book(object):
     def mimetype(self, mimetype):
         """The content of mimetype is unchangeable."""
         pass
+
+
+class Writer(object):
+    def make_mimetype(self, book, filepath):
+        """Write down mimetype file to the path."""
+        filename = 'mimetype'
+
+        with open(os.path.join(filepath, filename), 'w') as f:
+            f.write(book.mimetype)
