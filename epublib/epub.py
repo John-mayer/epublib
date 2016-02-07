@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 import os
 
+from .templates import template_container_xml
+
 
 class Book(object):
     def __init__(self, title='', lang='en', author='', publisher='',
@@ -29,9 +31,22 @@ class Book(object):
 
 
 class Writer(object):
-    def make_mimetype(self, book, filepath):
+    def make_mimetype(self, book, outputpath):
         """Write down mimetype file to the path."""
         filename = 'mimetype'
 
-        with open(os.path.join(filepath, filename), 'w') as f:
+        with open(os.path.join(outputpath, filename), 'w') as f:
             f.write(book.mimetype)
+
+    def make_container_xml(self, book, outputpath):
+        """Write down container.xml"""
+        try:
+            os.mkdir(os.path.join(outputpath, 'META-INF'))
+        except OSError:
+            # META-INF directory exists and then it is needless to do something.
+            pass
+
+        with open(os.path.join(outputpath, 'META-INF/container.xml'), 'w') as f:
+            f.write(template_container_xml.format(
+                os.path.join('OEBPS', book.package_doc_name)))
+
