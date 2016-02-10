@@ -1,11 +1,17 @@
 language: python
 
-python:
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-  - "pypy"
+matrix:
+  include:
+    - env: PYTHON=py27
+      python: "2.7"
+    - env: PYTHON=py33
+      python: "3.3"
+    - env: PYTHON=py34
+      python: "3.4"
+    - env: PYTHON=py35
+      python: "3.5"
+    - env: PYTHON=pypy
+      python: "pypy"
 
 install: sudo pip install tox
-script: tox
+script: tox -e $PYTHON
