@@ -1,6 +1,9 @@
 EPUBLib
 =======
 
+.. image:: https://travis-ci.org/takuan-osho/epublib.svg?branch=master
+   :target: https://travis-ci.org/takuan-osho/epublib
+
 Overview
 --------
 
