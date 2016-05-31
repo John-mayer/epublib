@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import os
+from datetime import date
 
 from .templates import template_container_xml
 
@@ -9,7 +10,8 @@ from .templates import template_container_xml
 class Book(object):
     def __init__(self, title='', lang='en', author='', publisher='',
                  copyright_desc='', package_doc_name='content.opf',
-                 nav_doc_name='toc.xhtml'):
+                 nav_doc_name='toc.xhtml', uuid='',
+                 modified_at=date.today().isoformat()):
         self.__mimetype = 'application/epub+zip'
         self.title = title
         self.lang = lang
@@ -18,6 +20,8 @@ class Book(object):
         self.copyright = copyright_desc
         self.package_doc_name = package_doc_name
         self.nav_doc_name = nav_doc_name
+        self.uuid = uuid
+        self.modified_at = modified_at
 
     @property
     def mimetype(self):
@@ -50,3 +54,6 @@ class Writer(object):
             f.write(template_container_xml.format(
                 os.path.join('OEBPS', book.package_doc_name)))
 
+    def generate_metadata(self, book):
+        """Generate metadata elements"""
+        pass

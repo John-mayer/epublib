@@ -6,6 +6,7 @@ import shutil
 
 from epublib import epub
 from epublib.templates import template_container_xml
+from epublib.templates import template_package_doc_xml
 
 
 class TestBook(unittest.TestCase):
@@ -43,3 +44,19 @@ class TestWriter(unittest.TestCase):
         with open(container_xml_path, 'r') as container_xml:
             self.assertEqual(container_xml.read(),
                              template_container_xml.format('OEBPS/content.opf'))
+
+    def test_generate_metadata(self):
+        title = 'how to use epublib'
+        lang = 'en'
+        uuid = 'epublib'
+        modified_at = '2016-05-31'
+
+        book = epub.Book(title=title, lang=lang, uuid=uuid,
+                         modified_at=modified_at)
+
+        metadata = self.writer.generate_metadata(book)
+
+        self.assertEqual(metadata,
+                         template_package_doc_xml.format(
+                             title=title, lang=lang, uuid=uuid,
+                             modified_at=modified_at))
